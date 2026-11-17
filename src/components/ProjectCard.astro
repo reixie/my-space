@@ -1,0 +1,170 @@
+---
+import { Image } from 'astro:assets';
+import ProjectMark from './ProjectMark.astro';
+import type { Project } from '../data/portfolio';
+
+interface Props {
+  project: Project;
+  index: number;
+}
+
+const { project, index } = Astro.props;
+const sizes = '(max-width: 767px) calc(100vw - 48px), (max-width: 1439px) calc((100vw - 112px) / 2), 664px';
+---
+
+<article class="project-card" aria-labelledby={`${project.id}-title`}>
+  <div class="project-cover">
+    {
+      project.background && (
+        <Image
+          class="cover-background"
+          src={project.background}
+          alt=""
+          aria-hidden="true"
+          width={950}
+          widths={[480, 950, 1900]}
+          sizes="(max-width: 767px) 140vw, 950px"
+          format="webp"
+          loading={index < 2 ? 'eager' : 'lazy'}
+        />
+      )
+    }
+    <picture class="cover-image">
+      {project.animatedCover && (
+        <source
+          media="(prefers-reduced-motion: no-preference)"
+          srcset={project.animatedCover}
+          type="image/webp"
+        />
+      )}
+      <Image
+        class="cover-artwork"
+        src={project.cover}
+        alt={`${project.name} — selected product design work`}
+        width={664}
+        widths={[360, 664, 1000, 1328]}
+        sizes={sizes}
+        format="webp"
+        loading={index < 2 ? 'eager' : 'lazy'}
+      />
+    </picture>
+  </div>
+  <div class="project-info">
+    <div class="project-name">
+      <ProjectMark light={project.mark} dark={project.darkMark} monochrome={project.monochromeMark} />
+      <h2 id={`${project.id}-title`}>
+        {project.href ? <a class="case-link" href={project.href}>{project.name}</a> : project.name}
+      </h2>
+    </div>
+    <p>{project.description}</p>
+  </div>
+</article>
+
+<style>
+  .project-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    min-width: 0;
+  }
+
+  .project-cover {
+    position: relative;
+    isolation: isolate;
+    aspect-ratio: 664 / 375;
+    overflow: hidden;
+    border-radius: var(--radius-control);
+    background: var(--color-surface);
+  }
+
+  .project-cover::after {
+    position: absolute;
+    z-index: 2;
+    inset: 1px;
+    border: 1px solid var(--color-image-outline);
+    border-radius: calc(var(--radius-control) - 1px);
+    pointer-events: none;
+    content: '';
+  }
+
+  .cover-image,
+  .cover-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cover-image {
+    inset: 0;
+    z-index: 1;
+  }
+
+  .cover-artwork {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cover-background {
+    top: 0;
+    left: 50%;
+    width: 142.96%;
+    max-width: none;
+    object-fit: fill;
+    transform: translateX(-50%);
+  }
+
+  .project-info {
+    min-width: 0;
+  }
+
+  .project-name {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-heading);
+  }
+
+  .project-info p {
+    color: var(--color-caption);
+    line-height: var(--leading-ui);
+    text-wrap: pretty;
+  }
+
+  .project-name h2 {
+    font-size: var(--text-body);
+    font-weight: var(--weight-medium);
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+  }
+
+  .case-link {
+    text-decoration: none;
+  }
+
+  .case-link::after {
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+    border-radius: var(--radius-control);
+    content: '';
+  }
+
+  .case-link:focus-visible {
+    outline: none;
+  }
+
+  .case-link:focus-visible::after {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 6px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .case-link:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+  }
+</style>

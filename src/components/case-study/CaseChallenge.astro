@@ -1,0 +1,167 @@
+---
+import type { CaseChallenge } from '../../data/case-studies/types';
+import CaseIcon from './CaseIcon.astro';
+import CaseScreenshot from './CaseScreenshot.astro';
+
+interface Props {
+  challenge: CaseChallenge;
+}
+
+const { challenge } = Astro.props;
+const screenshots = challenge.screenshots ?? [];
+const paired = screenshots.length > 1 && challenge.mediaLayout !== 'stack';
+---
+
+<article class="challenge">
+  <div class="challenge-heading">
+    <span class="icon"><CaseIcon name={challenge.icon} size={20} /></span>
+    <h3>{challenge.title}</h3>
+  </div>
+  <div class="challenge-content">
+    <p class="problem">{challenge.problem}</p>
+    <div class="response">
+      <h4>{challenge.responseTitle}</h4>
+      <p>{challenge.response}</p>
+      <ul>{challenge.details.map((detail) => <li>{detail}</li>)}</ul>
+      {challenge.flow && (
+        <ol class="flow" aria-label={challenge.flowLabel ?? challenge.title}>
+          {challenge.flow.map((step) => <li>{step}</li>)}
+        </ol>
+      )}
+    </div>
+  </div>
+  {screenshots.length > 0 && (
+    <div class:list={['challenge-media', { paired }]}>
+      {screenshots.map((screenshot) => (
+        <CaseScreenshot screenshot={screenshot} paired={paired} />
+      ))}
+    </div>
+  )}
+</article>
+
+<style>
+  .challenge {
+    min-width: 0;
+    padding: var(--space-7);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+  }
+
+  .challenge-heading {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    flex: 0 0 20px;
+    height: 26px;
+    color: var(--color-secondary);
+  }
+
+  h3 {
+    margin: 0;
+    color: var(--color-heading);
+    font-size: var(--text-heading);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-heading);
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  .challenge-content {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    align-items: start;
+    gap: var(--space-9);
+    margin-top: var(--space-6);
+    color: var(--color-secondary);
+    line-height: var(--leading-ui-relaxed);
+  }
+
+  .problem {
+    max-width: 52ch;
+  }
+
+  .response {
+    min-width: 0;
+    max-width: 72ch;
+  }
+
+  h4 {
+    margin: 0 0 var(--space-2);
+    color: var(--color-text);
+    font-size: var(--text-ui);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-ui-relaxed);
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin: var(--space-4) 0 0;
+    padding-inline-start: 18px;
+  }
+
+  .flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+    margin: var(--space-6) 0 0;
+    padding-inline-start: 18px;
+    color: var(--color-text);
+    font-size: var(--text-caption);
+    line-height: var(--leading-caption);
+    list-style-type: decimal;
+  }
+
+  .flow li {
+    padding-inline-end: 8px;
+  }
+
+  .flow li::marker {
+    color: var(--color-secondary);
+  }
+
+  .challenge-media {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: var(--space-6);
+    margin-top: var(--space-7);
+  }
+
+  .challenge-media.paired {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 767px) {
+    .challenge {
+      padding: var(--space-6);
+    }
+
+    .challenge-content {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-6);
+    }
+
+    .response {
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .challenge-media.paired {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 399px) {
+    .challenge {
+      padding: var(--space-5);
+    }
+  }
+</style>

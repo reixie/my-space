@@ -1,0 +1,40 @@
+---
+import { experience } from '../data/experience';
+import ExperienceItem from './ExperienceItem';
+---
+
+<section class="experience" aria-labelledby="experience-title">
+  <h2 id="experience-title">
+    Work Experience <span class="experience-count" aria-hidden="true">1</span>
+  </h2>
+  <ExperienceItem client:load experience={experience} />
+</section>
+
+<style>
+  .experience {
+    padding: var(--space-8) var(--page-gutter) var(--space-12);
+  }
+
+  h2 {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-1-5);
+    margin-bottom: var(--space-6);
+    font-size: var(--text-body);
+    font-weight: var(--weight-semibold);
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+  }
+
+  .experience-count {
+    color: var(--color-secondary);
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (max-width: 767px) {
+    .experience {
+      padding-top: var(--space-7);
+      padding-bottom: var(--space-9);
+    }
+  }
+</style>

@@ -1,0 +1,47 @@
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.emailLabel {
+  display: grid;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.socialIcon {
+  display: block;
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  background: currentColor;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+}
+
+.emailLabel > span {
+  grid-area: 1 / 1;
+}
+
+.feedback,
+.copyEmail[data-copied] .defaultLabel {
+  visibility: hidden;
+}
+
+.copyEmail[data-copied] .feedback {
+  visibility: visible;
+}
+
+@media (max-width: 359px) {
+  .links {
+    flex-wrap: wrap;
+    max-width: 250px;
+  }
+
+  .copyEmail {
+    margin-inline: 24px;
+  }
+}

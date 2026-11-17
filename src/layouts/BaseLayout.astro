@@ -1,0 +1,52 @@
+---
+import { profile, projects } from '../data/portfolio';
+import { browserThemeColors, systemGrayStyles } from '../styles/radix-gray';
+import AsciiBackground from '../components/AsciiBackground';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  skipHref?: string;
+  skipLabel?: string;
+}
+
+const {
+  title = `${profile.name} — Product Designer & Builder`,
+  description = 'Product designer and builder working across web, mobile, and native apps. Selected work by Alex Lohinov.',
+  image = projects[0].cover.src,
+  skipHref = '#selected-work',
+  skipLabel = 'Skip to selected work',
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const socialImage = new URL(image, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content={browserThemeColors.light} media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content={browserThemeColors.dark} media="(prefers-color-scheme: dark)" />
+    <style is:inline set:html={systemGrayStyles} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/jpeg" href={profile.avatar.src} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <AsciiBackground client:idle />
+    <a class="skip-link" href={skipHref}>{skipLabel}</a>
+    <slot />
+  </body>
+</html>

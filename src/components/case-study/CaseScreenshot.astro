@@ -1,0 +1,125 @@
+---
+import { getImage, Image } from 'astro:assets';
+import ArrowUpRight from 'reicon-react/icons/ArrowUpRight';
+import type { CaseScreenshot } from '../../data/case-studies/types';
+
+interface Props {
+  screenshot: CaseScreenshot;
+  paired?: boolean;
+}
+
+const { screenshot, paired = false } = Astro.props;
+const sourceLabel = screenshot.sourceLabel ?? (
+  screenshot.sourceUrl ? new URL(screenshot.sourceUrl).hostname.replace(/^www\./, '') : undefined
+);
+const fullImage = await getImage({ src: screenshot.image, format: 'webp', quality: 95 });
+const widths = [480, 800, 1280].filter((width) => width < screenshot.image.width);
+widths.push(screenshot.image.width);
+const sizes = paired
+  ? '(max-width: 767px) 100vw, (max-width: 1439px) 50vw, 580px'
+  : '(max-width: 1439px) 100vw, 1174px';
+---
+
+<figure>
+  <a
+    class:list={['screenshot-link', screenshot.presentation]}
+    href={fullImage.src}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={`Open ${screenshot.caption.toLowerCase()} screenshot in full size`}
+  >
+    <Image
+      src={screenshot.image}
+      alt={screenshot.alt}
+      widths={widths}
+      sizes={sizes}
+      format="webp"
+      quality={90}
+      loading="lazy"
+      decoding="async"
+    />
+  </a>
+  <figcaption>
+    {screenshot.sourceUrl ? (
+      <a href={screenshot.sourceUrl} target="_blank" rel="noopener noreferrer">
+        {screenshot.caption} · {sourceLabel}
+        <ArrowUpRight size={14} weight="Outline" aria-hidden="true" />
+      </a>
+    ) : screenshot.caption}
+  </figcaption>
+</figure>
+
+<style>
+  figure {
+    min-width: 0;
+    margin: 0;
+  }
+
+  .screenshot-link {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border: 1px solid transparent;
+    border-radius: var(--radius-control);
+    background: var(--color-surface-muted);
+    cursor: zoom-in;
+  }
+
+  .screenshot-link::after {
+    position: absolute;
+    inset: 1px;
+    border: 1px solid var(--color-image-outline);
+    border-radius: calc(var(--radius-control) - 1px);
+    pointer-events: none;
+    content: '';
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  .portrait,
+  .contained {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-6);
+  }
+
+  .portrait img {
+    width: auto;
+    max-width: 100%;
+    height: min(560px, 120vw);
+    object-fit: contain;
+  }
+
+  .contained img {
+    width: auto;
+    max-width: 100%;
+    max-height: 640px;
+    object-fit: contain;
+  }
+
+  figcaption {
+    margin-top: var(--space-3);
+    color: var(--color-caption);
+    font-size: var(--text-caption);
+    line-height: var(--leading-caption);
+  }
+
+  figcaption a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    text-decoration: none;
+    text-underline-offset: 3px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    figcaption a:hover {
+      color: var(--color-text);
+      text-decoration: underline;
+    }
+  }
+</style>

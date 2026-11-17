@@ -1,0 +1,27 @@
+---
+import Grid from 'reicon-react/icons/Grid';
+import Refresh from 'reicon-react/icons/Refresh';
+import Layers from 'reicon-react/icons/Layers';
+import ShieldCheck from 'reicon-react/icons/ShieldCheck';
+import Copy from 'reicon-react/icons/Copy';
+import Calendar from 'reicon-react/icons/Calendar';
+import Message from 'reicon-react/icons/Message';
+import Users from 'reicon-react/icons/Users';
+import Phone from 'reicon-react/icons/Phone';
+import Truck from 'reicon-react/icons/Truck';
+import type { CaseIconName } from '../../data/case-studies/types';
+
+interface Props {
+  name: CaseIconName;
+  size?: number;
+}
+
+const { name, size = 18 } = Astro.props;
+const icons = {
+  grid: Grid, refresh: Refresh, layers: Layers, 'shield-check': ShieldCheck, copy: Copy,
+  calendar: Calendar, message: Message, users: Users, phone: Phone, truck: Truck,
+};
+const Icon = icons[name];
+---
+
+<Icon size={size} weight="Outline" aria-hidden="true" />

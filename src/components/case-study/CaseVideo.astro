@@ -1,0 +1,63 @@
+---
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  src: string;
+  poster: ImageMetadata;
+  width: number;
+  height: number;
+  label: string;
+}
+
+const { src, poster, width, height, label } = Astro.props;
+const posterImage = await getImage({ src: poster, format: 'webp', quality: 90 });
+---
+
+<video
+  controls
+  muted
+  loop
+  playsinline
+  preload="metadata"
+  poster={posterImage.src}
+  width={width}
+  height={height}
+  aria-label={label}
+  data-motion-autoplay
+>
+  <source src={src} type="video/mp4" />
+  <a href={src}>Download video</a>
+</video>
+
+<script>
+  const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  document.querySelectorAll<HTMLVideoElement>('video[data-motion-autoplay]').forEach((video) => {
+    const updatePlayback = () => {
+      video.autoplay = !motionPreference.matches;
+
+      if (motionPreference.matches) {
+        video.pause();
+        return;
+      }
+
+      video.muted = true;
+      video.play().catch(() => {
+        // Native controls remain available when the browser blocks autoplay.
+      });
+    };
+
+    updatePlayback();
+    motionPreference.addEventListener('change', updatePlayback);
+  });
+</script>
+
+<style>
+  video {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+</style>

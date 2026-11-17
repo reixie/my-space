@@ -1,0 +1,102 @@
+[
+  {
+    "project": "roxfit",
+    "file": "src/assets/case-studies/roxfit/discover-exploration.webp",
+    "messageId": "81701",
+    "originalPath": "files/81701_image.png",
+    "caption": "Discover layout exploration",
+    "width": 573,
+    "height": 728,
+    "context": "Alex shared his assembled Discover MIDFI exploration; this is an early design board, not a final release screenshot."
+  },
+  {
+    "project": "roxfit",
+    "file": "src/assets/case-studies/roxfit/device-empty-state.webp",
+    "messageId": "82326",
+    "originalPath": "files/82326_image.png",
+    "caption": "Device-connection state study",
+    "width": 420,
+    "height": 339,
+    "context": "Device-state detail discussed in the ROXFIT connection workflow; presented as a state study."
+  },
+  {
+    "project": "callfront",
+    "file": "src/assets/case-studies/callfront/agent-selection-study.webp",
+    "messageId": "86897",
+    "originalPath": "photos/photo_86897_0.jpg",
+    "caption": "Agent selection and question-preview study",
+    "width": 1280,
+    "height": 928,
+    "context": "Agent-selection and question-preview screen discussed during layout and copy revisions."
+  },
+  {
+    "project": "callfront",
+    "file": "src/assets/case-studies/callfront/mobile-integrations-study.webp",
+    "messageId": "86970",
+    "originalPath": "photos/photo_86970_0.jpg",
+    "caption": "Mobile integration setup study",
+    "width": 814,
+    "height": 1218,
+    "context": "Mobile integration setup screenshot discussed during responsive-state review."
+  },
+  {
+    "project": "togaos",
+    "file": "src/assets/case-studies/togaos/customer-lookup-study.webp",
+    "messageId": "90182",
+    "originalPath": "photos/photo_90182_0.jpg",
+    "caption": "Shipment customer-lookup concept",
+    "width": 2560,
+    "height": 1600,
+    "context": "Alex described the updated product name, customer lookup, field changes, and a new-customer concept in the same message."
+  },
+  {
+    "project": "togaos",
+    "file": "src/assets/case-studies/togaos/new-customer-study.webp",
+    "messageId": "90183",
+    "originalPath": "photos/photo_90183_0.jpg",
+    "caption": "New-customer creation concept",
+    "width": 2560,
+    "height": 1600,
+    "context": "Companion new-customer concept supplied with the shipment-lookup update."
+  },
+  {
+    "project": "togaos",
+    "file": "src/assets/case-studies/togaos/loading-sheet-study.webp",
+    "messageId": "90664",
+    "originalPath": "photos/photo_90664_0.jpg",
+    "caption": "Loading-sheet layout study",
+    "width": 1280,
+    "height": 923,
+    "context": "Loading-sheet layout under review; uses sample customer/contact data and is labelled as a study."
+  },
+  {
+    "project": "werecruitly",
+    "file": "src/assets/case-studies/werecruitly/recruiter-profile-study.webp",
+    "messageId": "88037",
+    "originalPath": "photos/photo_88037_0.jpg",
+    "caption": "Recruiter-profile design alternative",
+    "width": 1522,
+    "height": 998,
+    "context": "Alex shared this recruiter-profile alternative as his design work."
+  },
+  {
+    "project": "werecruitly",
+    "file": "src/assets/case-studies/werecruitly/invitation-layout-study.webp",
+    "messageId": "90244",
+    "originalPath": "photos/photo_90244_0.jpg",
+    "caption": "Invitation-card layout iteration",
+    "width": 1440,
+    "height": 1245,
+    "context": "Invitation-card layout included with client review comments; it represents an iteration, not a verified final release."
+  },
+  {
+    "project": "valorx",
+    "file": "src/assets/case-studies/valorx/pagination-detail.webp",
+    "messageId": "86564",
+    "originalPath": "files/86564_tg_image_4267739440.png",
+    "caption": "Pagination control detail",
+    "width": 2110,
+    "height": 208,
+    "context": "Pagination-control detail supplied during divider/design-system review; shown as product-control context rather than a claim of sole authorship."
+  }
+]

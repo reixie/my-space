@@ -1,0 +1,401 @@
+---
+import ArrowLeft from 'reicon-react/icons/ArrowLeft';
+import ArrowUpRight from 'reicon-react/icons/ArrowUpRight';
+import BaseLayout from './BaseLayout.astro';
+import { ButtonLink } from '../components/ui/Button';
+import CaseOutcomes from '../components/case-study/CaseOutcomes.astro';
+import CaseChallenge from '../components/case-study/CaseChallenge.astro';
+import CaseIcon from '../components/case-study/CaseIcon.astro';
+import CaseHero from '../components/case-study/CaseHero.astro';
+import ProjectMark from '../components/ProjectMark.astro';
+import StoreBadges from '../components/StoreBadges.astro';
+import type { CaseStudy } from '../data/case-studies/types';
+import { profile } from '../data/portfolio';
+
+interface Props { caseStudy: CaseStudy; }
+const { caseStudy } = Astro.props;
+const websiteLabel = new URL(caseStudy.website).hostname.replace(/^www\./, '');
+const socialImage = caseStudy.hero.kind === 'video' ? caseStudy.hero.poster : caseStudy.hero.image;
+---
+
+<BaseLayout
+  title={`${caseStudy.title} · ${profile.name}`}
+  description={caseStudy.metaDescription}
+  image={socialImage.src}
+  skipHref="#case-content"
+  skipLabel="Skip to case study"
+>
+  <div class="case-page">
+    <nav class="case-navigation" aria-label="Case study navigation">
+      <ButtonLink href="/#selected-work">
+        <ArrowLeft size={16} weight="Outline" aria-hidden="true" />
+        All work
+      </ButtonLink>
+      <a class="website-link" href={caseStudy.website} target="_blank" rel="noopener noreferrer">
+        {websiteLabel}
+        <ArrowUpRight size={16} weight="Outline" aria-hidden="true" />
+      </a>
+    </nav>
+
+    <main id="case-content" tabindex="-1">
+      <header class="case-introduction">
+        <ProjectMark light={caseStudy.markLight} dark={caseStudy.markDark} monochrome={caseStudy.monochromeMark} size={48} />
+        <h1>{caseStudy.name}</h1>
+        <p>{caseStudy.introduction}</p>
+        {caseStudy.storeLinks && <StoreBadges links={caseStudy.storeLinks} />}
+        {caseStudy.links && (
+          <div class="project-links">
+            {caseStudy.links.map((link) => (
+              <a href={link.href} target="_blank" rel="noopener noreferrer">
+                {link.label}<ArrowUpRight size={14} weight="Outline" aria-hidden="true" />
+              </a>
+            ))}
+          </div>
+        )}
+      </header>
+
+      <CaseHero hero={caseStudy.hero} />
+
+      <div class="case-outcomes">
+        <CaseOutcomes outcomes={caseStudy.outcomes} />
+      </div>
+
+      <div class="case-story">
+        <section class="overview-section" aria-labelledby="overview-title">
+          <div class="section-copy">
+            <h2 id="overview-title">Overview</h2>
+            {caseStudy.overview.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
+          <dl class="project-facts">
+            {caseStudy.facts.map((fact) => (
+              <div>
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        <section class="brief-section" aria-labelledby="brief-title">
+          <div class="section-copy">
+            <h2 id="brief-title">The brief</h2>
+            <p>{caseStudy.brief}</p>
+          </div>
+          <ul class="project-goals">
+            {caseStudy.goals.map((goal) => (
+              <li>
+                <span class="goal-icon"><CaseIcon name={goal.icon} size={18} /></span>
+                <p>{goal.text}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section class="role-section" aria-labelledby="role-title">
+          <h2 id="role-title">My role</h2>
+          <div class="role-copy">
+            <p>{caseStudy.role}</p>
+            <ul>{caseStudy.contributions.map((contribution) => <li>{contribution}</li>)}</ul>
+          </div>
+        </section>
+
+        <section class="challenges-section" aria-labelledby="challenges-title">
+          <h2 id="challenges-title">Challenges & solutions</h2>
+          <div class="challenge-list">
+            {caseStudy.challenges.map((challenge) => <CaseChallenge challenge={challenge} />)}
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="case-footer">
+      <a class="return-link" href="/#selected-work">
+        <ArrowLeft size={16} weight="Outline" aria-hidden="true" />
+        Back to all work
+      </a>
+      <a class="email-link" href={`mailto:${profile.email}`}>{profile.email}</a>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .case-page {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding: var(--space-7) 100px var(--space-8);
+  }
+
+  .case-navigation,
+  .case-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+  }
+
+  .website-link,
+  .return-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1-5);
+    text-decoration: none;
+  }
+
+  .website-link {
+    color: var(--color-secondary);
+  }
+
+  .case-introduction {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 720px;
+    margin-block: var(--space-11) var(--space-9);
+  }
+
+  h1 {
+    margin-top: var(--space-6);
+    color: var(--color-heading);
+    font-size: var(--text-display);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-heading);
+  }
+
+  .case-introduction > p {
+    margin-top: var(--space-6);
+    color: var(--color-secondary);
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+    text-wrap: pretty;
+  }
+
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-6);
+    margin-top: var(--space-6);
+  }
+
+  .project-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--color-secondary);
+    text-decoration: none;
+    text-underline-offset: 4px;
+  }
+
+  .case-outcomes {
+    margin-top: var(--space-11);
+  }
+
+  .case-story {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    margin-top: var(--space-13);
+  }
+
+  h2 {
+    color: var(--color-heading);
+    font-size: var(--text-section);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-section);
+    letter-spacing: var(--tracking-heading);
+    text-wrap: balance;
+  }
+
+  .overview-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+    align-items: start;
+    gap: var(--space-12);
+  }
+
+  .section-copy {
+    max-width: 72ch;
+  }
+
+  .section-copy > p,
+  .role-copy > p {
+    color: var(--color-secondary);
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+    text-wrap: pretty;
+  }
+
+  .section-copy > p {
+    margin-top: var(--space-5);
+  }
+
+  .project-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6);
+    margin: 0;
+    padding-top: var(--space-2);
+  }
+
+  .project-facts dt {
+    color: var(--color-secondary);
+  }
+
+  .project-facts dd {
+    margin: var(--space-1-5) 0 0;
+    font-weight: var(--weight-medium);
+    text-wrap: pretty;
+  }
+
+  .project-goals {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-7);
+    margin: var(--space-7) 0 0;
+    padding: var(--space-6) 0 0;
+    border-top: 1px solid var(--color-border);
+    list-style: none;
+  }
+
+  .project-goals li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    min-width: 0;
+    line-height: var(--leading-ui-relaxed);
+  }
+
+  .goal-icon {
+    display: flex;
+    align-items: center;
+    flex: 0 0 18px;
+    height: calc(1em * var(--leading-ui-relaxed));
+    color: var(--color-secondary);
+  }
+
+  .role-section {
+    display: grid;
+    grid-template-columns: minmax(0, 0.45fr) minmax(0, 1.55fr);
+    gap: var(--space-9);
+    padding: var(--space-7);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+  }
+
+  .role-copy {
+    max-width: 72ch;
+  }
+
+  .role-copy ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin: var(--space-6) 0 0;
+    padding-inline-start: 18px;
+    color: var(--color-secondary);
+    line-height: var(--leading-ui-relaxed);
+  }
+
+  .challenge-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    margin-top: var(--space-7);
+  }
+
+  .case-footer {
+    margin-top: var(--space-11);
+    padding-top: var(--space-7);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .email-link {
+    color: var(--color-secondary);
+    text-decoration: none;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .website-link:hover,
+    .return-link:hover,
+    .email-link:hover,
+    .project-links a:hover {
+      color: var(--color-text);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+  }
+
+  @media (max-width: 1279px) {
+    .case-page {
+      padding-inline: var(--space-11);
+    }
+
+    .overview-section {
+      gap: var(--space-9);
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .overview-section {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-7);
+    }
+
+    .project-facts {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      padding-top: 0;
+    }
+
+    .role-section {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-6);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .case-page {
+      padding: var(--space-6) var(--page-gutter) var(--space-7);
+    }
+
+    .case-introduction {
+      margin-top: var(--space-9);
+      margin-bottom: var(--space-7);
+    }
+
+    h1 {
+      font-size: var(--text-display-compact);
+      line-height: var(--leading-display-compact);
+    }
+
+    .case-outcomes {
+      margin-top: var(--space-7);
+    }
+
+    .case-story {
+      gap: var(--space-9);
+      margin-top: var(--space-10);
+    }
+
+    .project-facts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .project-goals {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-5);
+    }
+
+    .role-section {
+      padding: var(--space-6);
+    }
+
+    .case-footer {
+      flex-wrap: wrap;
+      gap: var(--space-4) var(--space-6);
+      margin-top: var(--space-9);
+      padding-top: var(--space-6);
+    }
+  }
+</style>

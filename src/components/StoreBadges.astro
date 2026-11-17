@@ -1,0 +1,46 @@
+---
+import appStoreBadge from '../assets/store-badges/app-store.svg?url';
+import googlePlayBadge from '../assets/store-badges/google-play.svg?url';
+import type { StoreLink } from '../data/case-studies/types';
+
+interface Props { links: StoreLink[]; }
+const { links } = Astro.props;
+const badges = {
+  'app-store': { src: appStoreBadge, alt: 'Download on the App Store', width: 120 },
+  'google-play': { src: googlePlayBadge, alt: 'Get it on Google Play', width: 135 },
+};
+---
+
+<nav class="store-badges" aria-label="Download the app">
+  {links.map((link) => {
+    const badge = badges[link.store];
+    return (
+      <a href={link.href} target="_blank" rel="noopener noreferrer">
+        <img src={badge.src} alt={badge.alt} width={badge.width} height="40" />
+      </a>
+    );
+  })}
+</nav>
+
+<style>
+  .store-badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-5);
+    margin-top: var(--space-6);
+  }
+
+  a {
+    display: block;
+    min-height: 44px;
+    padding-block: 2px;
+    border-radius: var(--radius-control);
+    line-height: 0;
+  }
+
+  img {
+    width: auto;
+    height: 40px;
+  }
+</style>

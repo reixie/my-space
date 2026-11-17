@@ -1,0 +1,92 @@
+[
+  {
+    "file": "grid-wizard.png",
+    "documentation": "https://docs.valorx.com/valorx-wave/wave-experience/create-a-new-grid/grid-wizard-in-salesforce",
+    "assetUrl": "https://2237973035-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F65f4C4H8V5e0YV342mwp%2Fuploads%2FbI9jux9IOJKjJtzDOuKf%2FRelated%20List%20(Position).gif?alt=media&token=ee634579-434d-4fec-862a-8df513e7e684",
+    "frame": 216,
+    "dimensions": [
+      1280,
+      765
+    ]
+  },
+  {
+    "file": "personal-views.png",
+    "documentation": "https://docs.valorx.com/valorx-wave/surf-the-wave/surf-the-wave-in-salesforce",
+    "assetUrl": "https://2237973035-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F65f4C4H8V5e0YV342mwp%2Fuploads%2F6gMHsyBMdwPk5IOPtqwl%2Fimage.png?alt=media&token=aa0c5c46-565e-4bc9-b194-8e464f74146d",
+    "frame": 0,
+    "dimensions": [
+      1631,
+      851
+    ]
+  },
+  {
+    "file": "column-groups.png",
+    "documentation": "https://docs.valorx.com/valorx-wave/wave-data-management/managing-grid-data/column-group",
+    "assetUrl": "https://2237973035-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F65f4C4H8V5e0YV342mwp%2Fuploads%2Fd4U6adfspeiLFkbq7wzS%2FMultiple%20Column%20Grouping.gif?alt=media&token=16d54340-40ab-4821-951e-9fcb26fa04b8",
+    "frame": 250,
+    "dimensions": [
+      1280,
+      720
+    ]
+  },
+  {
+    "file": "formula-builder.png",
+    "documentation": "https://docs.valorx.com/valorx-wave/wave-data-management/data-control-and-customization",
+    "assetUrl": "https://2237973035-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F65f4C4H8V5e0YV342mwp%2Fuploads%2Fq3ilfNML9pw59c1hZvAa%2FFormula%20Fields%20v2.gif?alt=media&token=c4726495-bd01-4979-b4c1-1c508cba73f4",
+    "frame": 633,
+    "dimensions": [
+      1280,
+      787
+    ]
+  },
+  {
+    "file": "restore-conflicts.png",
+    "documentation": "https://docs.valorx.com/valorx-wave/wave-admin-and-control/backup-and-restore",
+    "assetUrl": "https://2237973035-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F65f4C4H8V5e0YV342mwp%2Fuploads%2FDLffGsXYDMLzvD9Rfm1k%2FRestore%20A%20grid.gif?alt=media&token=5ff0ec97-dd24-4c59-a988-e119d42da3bc",
+    "frame": 288,
+    "dimensions": [
+      1280,
+      768
+    ]
+  },
+  {
+    "file": "restore-summary.png",
+    "documentation": "https://docs.valorx.com/valorx-wave/wave-admin-and-control/backup-and-restore",
+    "assetUrl": "https://2237973035-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F65f4C4H8V5e0YV342mwp%2Fuploads%2FDLffGsXYDMLzvD9Rfm1k%2FRestore%20A%20grid.gif?alt=media&token=5ff0ec97-dd24-4c59-a988-e119d42da3bc",
+    "frame": 355,
+    "dimensions": [
+      1280,
+      768
+    ]
+  },
+  {
+    "file": "matrix-axes.png",
+    "documentation": "https://docs.valorx.com/valorx-wave/matrix/matrix-configuration",
+    "assetUrl": "https://2237973035-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F65f4C4H8V5e0YV342mwp%2Fuploads%2FjftgOI8bYuv3uXvWD0Gh%2FMatrix%20%E2%80%93%20Two-Level%20X-Axis%20Configuration.gif?alt=media&token=243ad332-909a-4ed1-9cab-191b0505049d",
+    "frame": 130,
+    "dimensions": [
+      1280,
+      860
+    ]
+  },
+  {
+    "file": "matrix-timeline.png",
+    "documentation": "https://docs.valorx.com/valorx-wave/matrix/matrix-configuration",
+    "assetUrl": "https://2237973035-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F65f4C4H8V5e0YV342mwp%2Fuploads%2FwL9gRzwdxnnc8PQB8glw%2Fimage.png?alt=media&token=b7f0aa22-d823-405b-91a3-65a8c9619646",
+    "frame": 0,
+    "dimensions": [
+      1317,
+      806
+    ]
+  },
+  {
+    "file": "fusion-rules.png",
+    "documentation": "https://docs.valorx.com/valorx-fusion/design-studio/tasks/state-management",
+    "assetUrl": "https://2472585788-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-MFqFFf4143HS0_Wagnz%2Fuploads%2FKLUniSfq4PtzVIC8819X%2FMaps%20Rule.gif?alt=media&token=bf38e8cf-94a5-486c-929e-ccef2d0993c5",
+    "frame": 597,
+    "dimensions": [
+      1280,
+      720
+    ]
+  }
+]

@@ -1,0 +1,73 @@
+---
+import { Image } from 'astro:assets';
+import ArrowUpRight from 'reicon-react/icons/ArrowUpRight';
+import type { CaseStudy } from '../../data/case-studies/types';
+import CaseVideo from './CaseVideo.astro';
+
+interface Props { hero: CaseStudy['hero']; }
+const { hero } = Astro.props;
+const widths = hero.kind === 'image'
+  ? [...[480, 768, 1240].filter((width) => width < hero.image.width), hero.image.width]
+  : [];
+const sizes = '(max-width: 767px) calc(100vw - 48px), (max-width: 1279px) calc(100vw - 128px), (max-width: 1439px) calc(100vw - 200px), 1240px';
+---
+
+<figure>
+  <div class="hero-media">
+    {hero.kind === 'video' ? <CaseVideo {...hero} /> : (
+      <Image
+        src={hero.image}
+        alt={hero.alt}
+        widths={widths}
+        sizes={sizes}
+        format="webp"
+        quality={90}
+        loading="eager"
+        fetchpriority="high"
+      />
+    )}
+  </div>
+  {hero.kind === 'image' && hero.source && (
+    <figcaption>
+      <a href={hero.source.url} target="_blank" rel="noopener noreferrer">
+        {hero.source.label}
+        <ArrowUpRight size={14} weight="Outline" aria-hidden="true" />
+      </a>
+    </figcaption>
+  )}
+</figure>
+
+<style>
+  figure { margin: 0; }
+  .hero-media {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+  }
+  .hero-media::after {
+    position: absolute;
+    inset: 1px;
+    border: 1px solid var(--color-image-outline);
+    border-radius: calc(var(--radius-xl) - 1px);
+    pointer-events: none;
+    content: '';
+  }
+  img { width: 100%; height: auto; }
+  figcaption {
+    margin-top: var(--space-3);
+    color: var(--color-caption);
+    font-size: var(--text-caption);
+    line-height: var(--leading-caption);
+  }
+  figcaption a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    text-decoration: none;
+    text-underline-offset: 3px;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    figcaption a:hover { color: var(--color-text); text-decoration: underline; }
+  }
+</style>

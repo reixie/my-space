@@ -1,0 +1,78 @@
+---
+import { getImage } from 'astro:assets';
+import { profile, socialLinks } from '../data/portfolio';
+import ContactLinks from './ContactLinks';
+import { Avatar } from './ui/Avatar';
+
+const avatarWidths = [48, 96, 144];
+const avatarImages = await Promise.all(
+  avatarWidths.map((width) => getImage({ src: profile.avatar, width, height: width, format: 'webp' })),
+);
+const avatarSrcSet = avatarImages.map((image, index) => `${image.src} ${avatarWidths[index]}w`).join(', ');
+---
+
+<header class="profile-hero">
+  <div class="profile-content">
+    <Avatar
+      client:load
+      src={avatarImages[1].src}
+      srcSet={avatarSrcSet}
+      alt={profile.name}
+      initials="AL"
+    />
+    <div class="bio">
+      <h1>{profile.title}</h1>
+      {profile.bio.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+    <ContactLinks client:load email={profile.email} links={socialLinks} />
+  </div>
+</header>
+
+<style>
+  .profile-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-12) var(--page-gutter) var(--space-8);
+  }
+
+  .profile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+    width: 480px;
+    max-width: 100%;
+  }
+
+  .bio {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    width: 100%;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .bio p {
+    color: var(--color-secondary);
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+    text-wrap: pretty;
+  }
+
+  .bio h1 {
+    font-size: var(--text-heading);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-heading);
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  @media (max-width: 767px) {
+    .profile-hero {
+      padding-top: var(--space-10);
+      padding-bottom: var(--space-7);
+    }
+  }
+</style>

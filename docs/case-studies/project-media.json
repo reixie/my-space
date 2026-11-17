@@ -1,0 +1,92 @@
+[
+  {
+    "file": "src/assets/case-studies/roxfit/mark.png",
+    "sourceUrl": "https://roxfit.app/apple-touch-icon.png",
+    "width": 180,
+    "height": 180
+  },
+  {
+    "file": "src/assets/case-studies/roxfit/planner.webp",
+    "sourceUrl": "https://play-lh.googleusercontent.com/jCYQX8erO7HNAUI5c9NTLeIN2dgmgpytVi6o9k4Qf93bHZ8SeF7hlop-Mvqd1zvnCmN-cu-r2w0JLlr2lA-jwkI=w1000",
+    "width": 1000,
+    "height": 1778
+  },
+  {
+    "file": "src/assets/case-studies/roxfit/player.webp",
+    "sourceUrl": "https://play-lh.googleusercontent.com/O30ttsDP84NPUPPXl3zvE-oar89wOvMlhuWxFfvijcjtzstrxVVvrQ_Sw7fks3MbtD7prnvlZH-VjbIw6qnm=w1000",
+    "width": 1000,
+    "height": 1778
+  },
+  {
+    "file": "src/assets/case-studies/microcosm/mark.png",
+    "sourceUrl": "https://microcosm.one/static/media/Logo_black.3f9e7e4d95d98b29acd2977cc4c6d18c.svg",
+    "width": 216,
+    "height": 50
+  },
+  {
+    "file": "src/assets/case-studies/microcosm/cover.webp",
+    "sourceUrl": "https://microcosm.one/og-default.jpg?v=2",
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "file": "src/assets/case-studies/callfront/mark.png",
+    "sourceUrl": "https://www.callfront.ai/images/logo-on-dark.svg",
+    "width": 134,
+    "height": 24
+  },
+  {
+    "file": "src/assets/case-studies/callfront/dashboard.webp",
+    "sourceUrl": "https://www.callfront.ai/images/home-page/process/process3.png?dpl=40de0ba",
+    "width": 1440,
+    "height": 1024
+  },
+  {
+    "file": "src/assets/case-studies/callfront/voice.webp",
+    "sourceUrl": "https://www.callfront.ai/images/home-page/process/process1.png?dpl=40de0ba",
+    "width": 1440,
+    "height": 1024
+  },
+  {
+    "file": "src/assets/case-studies/callfront/integrations.webp",
+    "sourceUrl": "https://www.callfront.ai/images/home-page/process/process2.png?dpl=40de0ba",
+    "width": 1440,
+    "height": 1024
+  },
+  {
+    "file": "src/assets/case-studies/togaos/mark.png",
+    "sourceUrl": "https://www.togaos.com/marketing/logo/togaos-logo.svg",
+    "width": 356,
+    "height": 107
+  },
+  {
+    "file": "src/assets/case-studies/togaos/overview.webp",
+    "sourceUrl": "https://www.togaos.com/marketing/hero/hero-img.svg",
+    "width": 700,
+    "height": 660
+  },
+  {
+    "file": "src/assets/case-studies/werecruitly/mark.png",
+    "sourceUrl": "https://werecruitly.com/images/logo.svg",
+    "width": 879,
+    "height": 178
+  },
+  {
+    "file": "src/assets/case-studies/werecruitly/cover.webp",
+    "source": "User-supplied Werecruitly cover artwork",
+    "width": 1200,
+    "height": 750
+  },
+  {
+    "file": "src/assets/case-studies/werecruitly/matches.webp",
+    "sourceUrl": "https://werecruitly.com/images/pages/recruiters/find_candidates.png",
+    "width": 2882,
+    "height": 1982
+  },
+  {
+    "file": "src/assets/case-studies/werecruitly/invites.webp",
+    "sourceUrl": "https://werecruitly.com/images/pages/candidates/invites_candidate.png",
+    "width": 2894,
+    "height": 2000
+  }
+]

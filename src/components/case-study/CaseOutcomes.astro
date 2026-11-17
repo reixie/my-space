@@ -1,0 +1,75 @@
+---
+import type { CaseOutcome } from '../../data/case-studies/types';
+import CaseIcon from './CaseIcon.astro';
+
+interface Props {
+  outcomes: CaseOutcome[];
+}
+
+const { outcomes } = Astro.props;
+---
+
+<section class="outcomes" aria-label="Project outcomes">
+  {outcomes.map((outcome) => (
+    <article class="outcome">
+      <span class="icon"><CaseIcon name={outcome.icon} size={16} /></span>
+      <div>
+        <h2>{outcome.title}</h2>
+        <p>{outcome.description}</p>
+      </div>
+    </article>
+  ))}
+</section>
+
+<style>
+  .outcomes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+  }
+
+  .outcome {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    min-width: 0;
+    padding: var(--space-6);
+  }
+
+  .outcome + .outcome {
+    border-inline-start: 1px solid var(--color-border);
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
+    color: var(--color-secondary);
+  }
+
+  h2 {
+    font-size: var(--text-body);
+    font-weight: var(--weight-medium);
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    margin-top: var(--space-1);
+    color: var(--color-secondary);
+    line-height: var(--leading-ui);
+  }
+
+  @media (max-width: 767px) {
+    .outcomes {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .outcome + .outcome {
+      border-inline-start: 0;
+      border-top: 1px solid var(--color-border);
+    }
+  }
+</style>

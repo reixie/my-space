@@ -1,0 +1,62 @@
+.control {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  gap: 4px;
+  min-height: 32px;
+  padding: 5px 11px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  background: var(--color-control);
+  color: var(--color-text);
+  box-shadow: var(--control-shadow);
+  font: inherit;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition-duration: var(--duration-hover);
+  transition-property: background-color, box-shadow;
+  transition-timing-function: ease-out;
+}
+
+.control:active:not([data-disabled]) {
+  background: var(--color-control-active);
+  box-shadow: 0 0 0 1px var(--color-control-border);
+}
+
+.control[data-disabled] {
+  color: var(--color-secondary);
+  cursor: default;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  padding: 7px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .control {
+    transition-property: background-color, box-shadow, scale;
+  }
+
+  .control:active:not([data-disabled]) {
+    scale: 0.96;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .control:hover:not([data-disabled]) {
+    background: var(--color-control-hover);
+  }
+}
+
+@media (pointer: coarse) {
+  .control::after {
+    position: absolute;
+    inset: -6px -4px;
+    content: '';
+  }
+}
